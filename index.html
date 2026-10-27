@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VR牢屋</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="title">
+  <div class="card">
+    <p class="kicker">こんなVRはイヤだ</p>
+    <h1>VR牢屋</h1>
+    <p class="lead">あなたの部屋が、牢屋になります。<br>それ以外は、特に何も起きません。</p>
+
+    <form id="settings" autocomplete="off">
+      <fieldset>
+        <legend>部屋のサイズ</legend>
+        <div class="row">
+          <select id="preset" aria-label="部屋の広さ">
+            <option value="4.5">4.5畳</option>
+            <option value="6">6畳</option>
+            <option value="8">8畳</option>
+            <option value="10">10畳</option>
+            <option value="custom">数字で指定</option>
+          </select>
+        </div>
+        <div class="dims">
+          <label>幅<input id="width" type="number" min="1.5" max="8" step="0.05" inputmode="decimal"><span>m</span></label>
+          <label>奥行<input id="depth" type="number" min="1.5" max="8" step="0.05" inputmode="decimal"><span>m</span></label>
+          <label>高さ<input id="height" type="number" min="2" max="3.5" step="0.05" inputmode="decimal"><span>m</span></label>
+        </div>
+        <p class="note">ここは目安です。中に入ってから現実の壁に合わせて調整できます。</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>鉄格子の密度</legend>
+        <div class="seg" id="density">
+          <label><input type="radio" name="density" value="sparse"><span>まばら</span></label>
+          <label><input type="radio" name="density" value="normal"><span>ふつう</span></label>
+          <label><input type="radio" name="density" value="dense"><span>みっしり</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>演出の強度</legend>
+        <div class="seg" id="intensity">
+          <label><input type="radio" name="intensity" value="low"><span>控えめ</span></label>
+          <label><input type="radio" name="intensity" value="normal"><span>ふつう</span></label>
+          <label><input type="radio" name="intensity" value="high"><span>本格的</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>音</legend>
+        <label class="range">環境音の音量<input id="volume" type="range" min="0" max="100" step="1"><output id="volume-out"></output></label>
+        <label class="check"><input id="voice" type="checkbox"><span>看守の声</span></label>
+        <p class="note" id="voice-status"></p>
+      </fieldset>
+
+      <details>
+        <summary>詳細</summary>
+        <label class="check"><input id="planes" type="checkbox"><span>Quest の空間設定から部屋の形を読む（平面検出）</span></label>
+        <label class="check"><input id="occlusion" type="checkbox"><span>家具の後ろの鉄格子を隠す（深度センサー・実験的）</span></label>
+      </details>
+    </form>
+
+    <button id="btn-start" disabled>収監される</button>
+    <p id="xr-status" class="status">WebXR を確認中…</p>
+    <button id="btn-preview" class="sub">PCプレビュー</button>
+
+    <ul class="howto">
+      <li>Meta Quest 3 のブラウザで、パススルー（MR）で体験する作品です。ゲームではありません。脱出はできません。</li>
+      <li>はじめに、部屋のまん中でドアの方を向き、パネルで鉄格子と鉄扉の位置を合わせます。</li>
+      <li>鉄格子や鉄扉には実体がありません。すり抜けます。歩き回るときは現実の家具や壁に気をつけてください。</li>
+      <li><b>おわるとき：</b>トリガー（またはピンチ）で「おわる」を出して選ぶ。Meta ボタン → 終了。あるいは、ヘッドセットを外す。</li>
+    </ul>
+  </div>
+</div>
+<button id="btn-back" hidden>おわる</button>
+<p id="hint" hidden>ドラッグで見回す ／ WASD で歩く ／ クリックでパネルを押す</p>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
